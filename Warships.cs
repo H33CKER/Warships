@@ -189,10 +189,6 @@ class Program
         {
           Console.Write(" ");
         }
-        else if (Board[Row, Column] == 'A' || Board[Row, Column] == 'B' || Board[Row, Column] == 'S' || Board[Row, Column] == 'D' || Board[Row, Column] == 'P')
-        {
-          Console.Write(" ");
-        }
         else
         {
           Console.Write(Board[Row, Column]);
