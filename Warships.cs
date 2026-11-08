@@ -23,7 +23,11 @@ class Program
     int Row = 0;
     int Column = 0;
     GetRowColumn(ref Row, ref Column);
-    if (Board[Row, Column] == 'm' || Board[Row, Column] == 'h')
+    if (Row < 0 || Row > 9 || Column < 0 || Column > 9)
+    {
+      Console.WriteLine("Sorry, (" + Column + "," + Row + ") is an invalid square. Please try again.");
+    }
+    else if (Board[Row, Column] == 'm' || Board[Row, Column] == 'h')
     {
       Console.WriteLine("Sorry, you have already shot at the square (" + Column + "," + Row + "). Please try again.");
     }
@@ -32,7 +36,7 @@ class Program
       Console.WriteLine("Sorry, (" + Column + "," + Row + ") is a miss.");
       Board[Row, Column] = 'm';
     }
-    else
+    else if (Board[Row, Column] == 'A' || Board[Row, Column] == 'B' || Board[Row, Column] == 'S' || Board[Row, Column] == 'D' || Board[Row, Column] == 'P')
     {
       Console.WriteLine("Hit at (" + Column + "," + Row + ").");
       Board[Row, Column] = 'h';
