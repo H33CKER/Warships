@@ -224,16 +224,19 @@ class Program
   private static void PlayGame(ref char[,] Board, ref ShipType[] Ships)
   {
     bool GameWon = false;
+    int Turns = 0;
     while (GameWon == false)
     {
       PrintBoard(Board);
       MakePlayerMove(ref Board, ref Ships);
+      Turns++;
       GameWon = CheckWin(Board);
       if (GameWon == true)
       {
         Console.WriteLine("All ships sunk!");
         Console.WriteLine();
       }
+      Console.WriteLine("You have had " + Turns + " turn(s).");
     }
   }
 
