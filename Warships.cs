@@ -38,7 +38,15 @@ class Program
     }
     else if (Board[Row, Column] == 'A' || Board[Row, Column] == 'B' || Board[Row, Column] == 'S' || Board[Row, Column] == 'D' || Board[Row, Column] == 'P')
     {
+      char ShipInitial = Board[Row, Column];
       Console.WriteLine("Hit at (" + Column + "," + Row + ").");
+      for (int ShipIndex = 0; ShipIndex < Ships.Length; ShipIndex++)
+      {
+        if (Ships[ShipIndex].Name[0] == ShipInitial)
+        {
+          Console.WriteLine(Ships[ShipIndex].Name + " has been hit.");
+        }
+      }
       Board[Row, Column] = 'h';
     }
   }
