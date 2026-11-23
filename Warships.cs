@@ -39,15 +39,16 @@ class Program
     else if (Board[Row, Column] == 'A' || Board[Row, Column] == 'B' || Board[Row, Column] == 'S' || Board[Row, Column] == 'D' || Board[Row, Column] == 'P')
     {
       char ShipInitial = Board[Row, Column];
+      Board[Row, Column] = 'h';
       Console.WriteLine("Hit at (" + Column + "," + Row + ").");
       for (int ShipIndex = 0; ShipIndex < Ships.Length; ShipIndex++)
       {
         if (Ships[ShipIndex].Name[0] == ShipInitial)
         {
           Console.WriteLine(Ships[ShipIndex].Name + " has been hit.");
+          CheckSunk(Board, ref Ships, ShipInitial);
         }
       }
-      Board[Row, Column] = 'h';
     }
   }
 
@@ -160,6 +161,31 @@ class Program
       }
     }
     return true;
+  }
+
+  private static void CheckSunk(char[,] Board, ref ShipType[] Ships, char ShipInitial)
+  {
+    bool sunk = true;
+    for (int RowScan = 0; RowScan < 10; RowScan++)
+    {
+      for (int ColumnScan = 0; ColumnScan < 10; ColumnScan++)
+      {
+        if (Board[RowScan, ColumnScan] == ShipInitial)
+        {
+          sunk = false;
+        }
+      }
+    }
+    if (sunk == true)
+    {
+      for (int ShipIndex = 0; ShipIndex < Ships.Length; ShipIndex++)
+      {
+        if (Ships[ShipIndex].Name[0] == ShipInitial)
+        {
+          Console.WriteLine(Ships[ShipIndex].Name + " is sunk!");
+        }
+      }
+    }
   }
 
   private static bool CheckWin(char[,] Board)
